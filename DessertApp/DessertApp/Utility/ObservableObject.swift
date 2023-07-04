@@ -23,8 +23,9 @@ final class ObservableObject<T> {
         self.value = value
     }
     
-    func bind(listener: @escaping (T) -> Void) {
+    func bind(skipInitialListenerCall: Bool = false, listener: @escaping (T) -> Void) {
         self.listeners.append(listener)
+        guard !skipInitialListenerCall else { return }
         listener(value)
     }
     

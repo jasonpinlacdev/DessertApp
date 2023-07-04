@@ -26,7 +26,6 @@ class DessertDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(dessertDetail.thumbnailURLString)
         setup()
         setupTableView()
     }
@@ -53,9 +52,8 @@ class DessertDetailViewController: UIViewController {
         ])
     }
     
-    // this method should go in the viewModel
+    // TODO: - this method should go in the viewModel
     func processNumberOfActualIngredients() {
-        // process how many ingredients there are
         var ingredients: [IngredientModel] = []
         
         ingredients.append(IngredientModel(ingredientName: dessertDetail.ingredient1, measure: dessertDetail.measure1))
@@ -86,7 +84,6 @@ class DessertDetailViewController: UIViewController {
                 }
             }
         }
-        
     }
     
     
