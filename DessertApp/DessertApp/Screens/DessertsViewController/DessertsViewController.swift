@@ -7,6 +7,20 @@
 
 import UIKit
 
+
+/* TODO: - Todo List
+ create an image networking layer
+ cache downloaded images
+ create individual tableViewCells classes that encapsulate the image layer
+ cancel the current datatask if scrolling the tableview
+ refactor network layer to use generics
+ create splash page
+ */
+
+
+
+
+
 class DessertsViewController: UIViewController {
     
     let viewModel = DessertsViewModel()
@@ -49,7 +63,9 @@ class DessertsViewController: UIViewController {
         viewModel.dessertDetail.bind(skipInitialListenerCall: true) { [weak self] dessertDetail in
             self?.removeLoadingSpinner()
             guard let dessertDetail = dessertDetail else { return }
-            self?.navigationController?.pushViewController(DessertDetailViewController(dessertDetail: dessertDetail), animated: true)
+            let dessertDetailViewModel = DessertDetailViewModel(dessertDetail: dessertDetail)
+            let dessertDetailViewController = DessertDetailViewController(with: dessertDetailViewModel)
+            self?.navigationController?.pushViewController(dessertDetailViewController, animated: true)
         }
     }
 }
