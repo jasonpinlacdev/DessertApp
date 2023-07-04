@@ -22,7 +22,10 @@ class DessertsViewModel {
             guard let self = self else { return }
             switch result {
             case .success(let dessertsWrapper):
-                self.dessertsList.value = dessertsWrapper.dessertsList
+                let sortedDessertsList = dessertsWrapper.dessertsList.sorted { dessert1, dessert2 in
+                    return dessert1.name < dessert2.name
+                }
+                self.dessertsList.value = sortedDessertsList
             case .failure(let networkManagerError):
                 self.networkManagerError.value = networkManagerError
             }

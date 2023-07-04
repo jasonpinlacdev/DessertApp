@@ -14,8 +14,9 @@ import UIKit
  Done - cancel the current datatask if scrolling the tableview
  Done - add error handling to network layer
  Done - refactor network layer to use generics
- create splash page
- unit tests
+ Done - create splash page
+ unit tests for viewModels and Network Manager
+
  */
 
 class DessertsViewController: UIViewController {
