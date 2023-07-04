@@ -22,11 +22,13 @@ final class ImageManager {
     
     private var cache: [CachedImage] = []
     
-    func getImage(for url: URL, completion: @escaping (UIImage) -> Void) -> Cancellable? {
+    func getImage(for url: URL, completion: @escaping (Result<UIImage, NetworkManager.HTTPError>) -> Void) -> Cancellable? {
         
         // Check cache for image data based off of URL
         if let image = getCachedImage(for: url) {
-            completion(image)
+            DispatchQueue.main.async {
+                completion(.success(image))
+            }
             print("No need to create run a DataTask. Returning nil")
             return nil
         }
@@ -35,32 +37,36 @@ final class ImageManager {
         let dataTask = URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
             // check the error
             guard error == nil else {
-                print("network error")
+                DispatchQueue.main.async {
+                    completion(.failure(.networkError))
+                }
                 return
             }
-            
             // check the response
             guard let response = response as? HTTPURLResponse,
                   (200...299).contains(response.statusCode) else {
-                print("network httpURLResponse error")
+                DispatchQueue.main.async {
+                    completion(.failure(.failedResponse))
+                }
                 return
             }
-            
             // check the data
             guard let data = data else {
-                print("network data error")
+                DispatchQueue.main.async {
+                    completion(.failure(.invalidData))
+                }
                 return
             }
             self?.cacheImage(data, for: url)
-            
-            
-            // decode the image data
+            // create the image from data
             if let image = UIImage(data: data) {
                 DispatchQueue.main.async {
-                    completion(image)
+                    completion(.success(image))
                 }
             } else {
-                print("failed to create UIImage from data")
+                DispatchQueue.main.async {
+                    completion(.failure(.failedDecoding))
+                }
                 return
             }
         }

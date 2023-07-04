@@ -12,7 +12,8 @@ import UIKit
  Done - create an image manager that downloads and caches downloaded images
  Done - create custom tableViewCells classes that encapsulate the logic to download images using the image manager and set them
  Done - cancel the current datatask if scrolling the tableview
- refactor network layer to use generics
+ Done - add error handling to network layer
+ Done - refactor network layer to use generics
  create splash page
  unit tests
  */
@@ -53,7 +54,7 @@ class DessertsViewController: UIViewController {
     }
     
     func setupBindings() {
-        viewModel.desserts.bind(skipInitialListenerCall: true) { [weak self] _ in
+        viewModel.dessertsList.bind(skipInitialListenerCall: true) { [weak self] _ in
             self?.dessertsTableView.reloadData()
             self?.removeLoadingSpinner()
         }
@@ -65,18 +66,38 @@ class DessertsViewController: UIViewController {
             let dessertDetailViewController = DessertDetailViewController(with: dessertDetailViewModel)
             self.navigationController?.pushViewController(dessertDetailViewController, animated: true)
         }
+        viewModel.networkManagerError.bind(skipInitialListenerCall: true) { [weak self] networkManagerError in
+            guard let self = self else { return }
+            self.removeLoadingSpinner()
+            guard let networkManagerError = networkManagerError else { return }
+            
+            let errorMessage: String
+            switch networkManagerError {
+            case .networkError:
+                errorMessage = "A network error has occurred. Please check your internet connection and restart the application."
+            case .failedResponse:
+                errorMessage = "There is a network error that seems to be an issue with the response."
+            case .invalidData:
+                errorMessage = "There is an issue with the data. Try again."
+            case .failedDecoding:
+                errorMessage = "There is an issue trying to decode the data. Try again."
+            }
+            let alert = UIAlertController(title: "Something went wrong", message: errorMessage, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel))
+            present(alert, animated: true)
+        }
     }
 
 }
 
 extension DessertsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let list = viewModel.desserts.value?.list else { return 0 }
-        return list.count
+        guard let dessertList = viewModel.dessertsList.value else { return 0 }
+        return dessertList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let desserts = viewModel.desserts.value else {
+        guard let dessertsList = viewModel.dessertsList.value else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
             return cell
         }
@@ -85,9 +106,7 @@ extension DessertsViewController: UITableViewDataSource, UITableViewDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
             return cell
         }
-        
-        cell.configure(dessertName: desserts.list[indexPath.row].name, imageURL: URL(string: desserts.list[indexPath.row].thumbnailURL)!, imageManager: viewModel.imageManager)
-        
+        cell.configure(dessertName: dessertsList[indexPath.row].name, imageURL: URL(string: dessertsList[indexPath.row].thumbnailURL)!, imageManager: viewModel.imageManager)
         return cell
     }
     

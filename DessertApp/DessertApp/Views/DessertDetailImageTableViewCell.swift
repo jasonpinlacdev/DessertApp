@@ -28,8 +28,14 @@ class DessertDetailImageTableViewCell: UITableViewCell {
             imageSize = size // set the image size once for the cell
         }
         setContentConfig(image: placeholderImage, size: size)
-        imageRequest = imageManager.getImage(for: imageURL) { [weak self] image in
-            self?.setContentConfig(image: image, size: size)
+        imageRequest = imageManager.getImage(for: imageURL) { [weak self] result in
+            switch result {
+            case .success(let image):
+                self?.setContentConfig(image: image, size: size)
+            case .failure(let networkManagerError):
+                print("Something went wrong with Image Manager Request: \(networkManagerError)")
+            }
+         
         }
     }
     

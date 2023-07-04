@@ -13,7 +13,7 @@
 		4682ED592A533972003A0EA7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4682ED572A533972003A0EA7 /* LaunchScreen.storyboard */; };
 		4682ED622A5339D6003A0EA7 /* DessertsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4682ED612A5339D6003A0EA7 /* DessertsViewController.swift */; };
 		4682ED642A533CB7003A0EA7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4682ED632A533CB7003A0EA7 /* NetworkManager.swift */; };
-		4682ED692A534075003A0EA7 /* Desserts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4682ED682A534075003A0EA7 /* Desserts.swift */; };
+		4682ED692A534075003A0EA7 /* DessertsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4682ED682A534075003A0EA7 /* DessertsWrapper.swift */; };
 		4682ED6B2A535560003A0EA7 /* DessertDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4682ED6A2A535560003A0EA7 /* DessertDetailViewController.swift */; };
 		4682ED6D2A537B56003A0EA7 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4682ED6C2A537B56003A0EA7 /* Ingredient.swift */; };
 		E12E06FD2A53B9CB00786F63 /* UIViewController+Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12E06FC2A53B9CB00786F63 /* UIViewController+Spinner.swift */; };
@@ -34,7 +34,7 @@
 		4682ED5A2A533972003A0EA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4682ED612A5339D6003A0EA7 /* DessertsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DessertsViewController.swift; sourceTree = "<group>"; };
 		4682ED632A533CB7003A0EA7 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		4682ED682A534075003A0EA7 /* Desserts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Desserts.swift; sourceTree = "<group>"; };
+		4682ED682A534075003A0EA7 /* DessertsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DessertsWrapper.swift; sourceTree = "<group>"; };
 		4682ED6A2A535560003A0EA7 /* DessertDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DessertDetailViewController.swift; sourceTree = "<group>"; };
 		4682ED6C2A537B56003A0EA7 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		E12E06FC2A53B9CB00786F63 /* UIViewController+Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Spinner.swift"; sourceTree = "<group>"; };
@@ -110,7 +110,7 @@
 		4682ED662A533CE4003A0EA7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4682ED682A534075003A0EA7 /* Desserts.swift */,
+				4682ED682A534075003A0EA7 /* DessertsWrapper.swift */,
 				4682ED6C2A537B56003A0EA7 /* Ingredient.swift */,
 			);
 			path = Models;
@@ -237,7 +237,7 @@
 				E12E07072A53E75000786F63 /* ImageManager.swift in Sources */,
 				4682ED622A5339D6003A0EA7 /* DessertsViewController.swift in Sources */,
 				4682ED6D2A537B56003A0EA7 /* Ingredient.swift in Sources */,
-				4682ED692A534075003A0EA7 /* Desserts.swift in Sources */,
+				4682ED692A534075003A0EA7 /* DessertsWrapper.swift in Sources */,
 				E12E070C2A54492200786F63 /* DessertDetailImageTableViewCell.swift in Sources */,
 				4682ED4D2A533971003A0EA7 /* AppDelegate.swift in Sources */,
 				4682ED6B2A535560003A0EA7 /* DessertDetailViewController.swift in Sources */,

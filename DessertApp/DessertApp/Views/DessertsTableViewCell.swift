@@ -24,9 +24,14 @@ class DessertsTableViewCell: UITableViewCell {
     // configure the cell with text and image
     func configure(dessertName: String, imageURL: URL, imageManager: ImageManager) {
         setContentConfig(text: dessertName, image: placeHolderImage)
-        imageRequest = imageManager.getImage(for: imageURL) { [weak self] image in
+        imageRequest = imageManager.getImage(for: imageURL) { [weak self] result in
             guard let self = self else { return }
-            setContentConfig(text: dessertName, image: image)
+            switch result {
+            case .success(let image):
+                setContentConfig(text: dessertName, image: image)
+            case .failure(let networkManagerError):
+                print("Something went wrong with Image Manager Request: \(networkManagerError)")
+            }
         }
     }
     

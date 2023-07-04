@@ -11,20 +11,34 @@ class DessertsViewModel {
     let networkManager = NetworkManager()
     var imageManager = ImageManager()
     
-    var desserts: ObservableObject<Desserts?> = ObservableObject(value: nil)
+    var dessertsList: ObservableObject<[Dessert]?> = ObservableObject(value: nil)
     var dessertDetail: ObservableObject<DessertDetail?> = ObservableObject(value: nil)
+    var networkManagerError: ObservableObject<NetworkManager.HTTPError?> = ObservableObject(value: nil)
+    
     var dessertsViewTitle = "Desserts"
     
     func getDesserts() {
-        networkManager.getDesserts(from: URL(string: networkManager.dessertsURLString)!) { [weak self] desserts in
-            self?.desserts.value = desserts
+        networkManager.getDesserts() { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let dessertsWrapper):
+                self.dessertsList.value = dessertsWrapper.dessertsList
+            case .failure(let networkManagerError):
+                self.networkManagerError.value = networkManagerError
+            }
         }
     }
     
     func getDessertDetail(for indexPath: IndexPath) {
-        guard let desserts = desserts.value else { return }
-        networkManager.getDessertDetail(from: URL(string: networkManager.dessertDetailURLString + desserts.list[indexPath.row].id)!) { [weak self] dessertDetail in
-            self?.dessertDetail.value = dessertDetail
+        guard let dessertsList = self.dessertsList.value else { return }
+        networkManager.getDessertDetail(for: dessertsList[indexPath.row].id) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let dessertDetailWrapper):
+                dessertDetail.value = dessertDetailWrapper.dessertDetailList[0]
+            case .failure(let networkManagerError):
+                self.networkManagerError.value = networkManagerError
+            }
         }
     }
 }

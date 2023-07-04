@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct Desserts: Codable {
-    let list: [Dessert]
+struct DessertsWrapper: Codable {
+    let dessertsList: [Dessert]
     
     enum CodingKeys: String, CodingKey {
-        case list = "meals"
+        case dessertsList = "meals"
     }
 }
 
@@ -28,10 +28,10 @@ struct Dessert: Codable {
 }
 
 struct DessertDetailWrapper: Codable {
-    let list: [DessertDetail]
+    let dessertDetailList: [DessertDetail]
 
     enum CodingKeys: String, CodingKey {
-        case list = "meals"
+        case dessertDetailList = "meals"
     }
 }
 
