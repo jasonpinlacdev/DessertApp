@@ -35,7 +35,7 @@ struct DessertDetailWrapper: Codable {
     }
 }
 
-struct DessertDetail: Codable {
+struct DessertDetail: Codable, Equatable {
     var id: String
     var name: String
     var thumbnailURLString: String

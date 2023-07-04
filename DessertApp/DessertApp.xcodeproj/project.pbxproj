@@ -23,7 +23,19 @@
 		E12E07072A53E75000786F63 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12E07062A53E75000786F63 /* ImageManager.swift */; };
 		E12E070A2A53EB2600786F63 /* DessertsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12E07092A53EB2600786F63 /* DessertsTableViewCell.swift */; };
 		E12E070C2A54492200786F63 /* DessertDetailImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12E070B2A54492200786F63 /* DessertDetailImageTableViewCell.swift */; };
+		E12E07152A546E2F00786F63 /* DessertAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12E07142A546E2F00786F63 /* DessertAppTests.swift */; };
+		E12E071E2A546E7700786F63 /* DessertDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12E071D2A546E7700786F63 /* DessertDetailViewModelTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E12E07162A546E2F00786F63 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4682ED412A533971003A0EA7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4682ED482A533971003A0EA7;
+			remoteInfo = DessertApp;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4682ED492A533971003A0EA7 /* DessertApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DessertApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,10 +56,20 @@
 		E12E07062A53E75000786F63 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		E12E07092A53EB2600786F63 /* DessertsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DessertsTableViewCell.swift; sourceTree = "<group>"; };
 		E12E070B2A54492200786F63 /* DessertDetailImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DessertDetailImageTableViewCell.swift; sourceTree = "<group>"; };
+		E12E07122A546E2F00786F63 /* DessertAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DessertAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E12E07142A546E2F00786F63 /* DessertAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DessertAppTests.swift; sourceTree = "<group>"; };
+		E12E071D2A546E7700786F63 /* DessertDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DessertDetailViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		4682ED462A533971003A0EA7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E12E070F2A546E2F00786F63 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -61,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				4682ED4B2A533971003A0EA7 /* DessertApp */,
+				E12E07132A546E2F00786F63 /* DessertAppTests */,
 				4682ED4A2A533971003A0EA7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -69,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				4682ED492A533971003A0EA7 /* DessertApp.app */,
+				E12E07122A546E2F00786F63 /* DessertAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -161,6 +185,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		E12E07132A546E2F00786F63 /* DessertAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				E12E071D2A546E7700786F63 /* DessertDetailViewModelTests.swift */,
+				E12E07142A546E2F00786F63 /* DessertAppTests.swift */,
+			);
+			path = DessertAppTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -181,6 +214,24 @@
 			productReference = 4682ED492A533971003A0EA7 /* DessertApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E12E07112A546E2F00786F63 /* DessertAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E12E07182A546E2F00786F63 /* Build configuration list for PBXNativeTarget "DessertAppTests" */;
+			buildPhases = (
+				E12E070E2A546E2F00786F63 /* Sources */,
+				E12E070F2A546E2F00786F63 /* Frameworks */,
+				E12E07102A546E2F00786F63 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E12E07172A546E2F00786F63 /* PBXTargetDependency */,
+			);
+			name = DessertAppTests;
+			productName = DessertAppTests;
+			productReference = E12E07122A546E2F00786F63 /* DessertAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -193,6 +244,10 @@
 				TargetAttributes = {
 					4682ED482A533971003A0EA7 = {
 						CreatedOnToolsVersion = 14.3;
+					};
+					E12E07112A546E2F00786F63 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = 4682ED482A533971003A0EA7;
 					};
 				};
 			};
@@ -210,6 +265,7 @@
 			projectRoot = "";
 			targets = (
 				4682ED482A533971003A0EA7 /* DessertApp */,
+				E12E07112A546E2F00786F63 /* DessertAppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -221,6 +277,13 @@
 			files = (
 				4682ED592A533972003A0EA7 /* LaunchScreen.storyboard in Resources */,
 				4682ED562A533972003A0EA7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E12E07102A546E2F00786F63 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,7 +311,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E12E070E2A546E2F00786F63 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E12E071E2A546E7700786F63 /* DessertDetailViewModelTests.swift in Sources */,
+				E12E07152A546E2F00786F63 /* DessertAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E12E07172A546E2F00786F63 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4682ED482A533971003A0EA7 /* DessertApp */;
+			targetProxy = E12E07162A546E2F00786F63 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4682ED572A533972003A0EA7 /* LaunchScreen.storyboard */ = {
@@ -430,6 +510,50 @@
 			};
 			name = Release;
 		};
+		E12E07192A546E2F00786F63 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XWVP4F494Z;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.jasonpinlac.DessertAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DessertApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DessertApp";
+			};
+			name = Debug;
+		};
+		E12E071A2A546E2F00786F63 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XWVP4F494Z;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.jasonpinlac.DessertAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DessertApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DessertApp";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -447,6 +571,15 @@
 			buildConfigurations = (
 				4682ED5E2A533972003A0EA7 /* Debug */,
 				4682ED5F2A533972003A0EA7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E12E07182A546E2F00786F63 /* Build configuration list for PBXNativeTarget "DessertAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E12E07192A546E2F00786F63 /* Debug */,
+				E12E071A2A546E2F00786F63 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

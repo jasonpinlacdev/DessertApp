@@ -10,7 +10,7 @@ import Foundation
 class DessertDetailViewModel {
     var imageManager: ImageManager
     var networkManager = NetworkManager()
-    private var dessertDetail: DessertDetail
+    var dessertDetail: DessertDetail
     var actualIngredients: [IngredientModel] = []
 
     init(dessertDetail: DessertDetail, imageManager: ImageManager) {
@@ -31,7 +31,7 @@ class DessertDetailViewModel {
         return dessertDetail.thumbnailURLString
     }
     
-    private func processNumberOfActualIngredients() {
+    func processNumberOfActualIngredients() {
         var ingredients: [IngredientModel] = []
         ingredients.append(IngredientModel(ingredientName: dessertDetail.ingredient1, measure: dessertDetail.measure1))
         ingredients.append(IngredientModel(ingredientName: dessertDetail.ingredient2, measure: dessertDetail.measure2))
