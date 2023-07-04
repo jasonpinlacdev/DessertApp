@@ -38,9 +38,9 @@ class DessertsTableViewCell: UITableViewCell {
     // reset the cell
     override func prepareForReuse() {
         super.prepareForReuse()
-        print("Preparing cell for reuse")
+        print("Preparing cell for reuse. Canceling previous imageRequest dataTaks: \(String(describing: imageRequest))")
         setContentConfig(text: nil, image: placeHolderImage)
-        print("Canceling previous imageRequest dataTaks: \(String(describing: imageRequest))")
+        print()
         imageRequest?.cancel()
     }
     

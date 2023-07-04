@@ -16,7 +16,6 @@ import UIKit
  Done - refactor network layer to use generics
  Done - create splash page
  unit tests for viewModels and Network Manager
-
  */
 
 class DessertsViewController: UIViewController {

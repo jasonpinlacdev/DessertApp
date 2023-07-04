@@ -29,10 +29,11 @@ final class ImageManager {
             DispatchQueue.main.async {
                 completion(.success(image))
             }
-            print("No need to create run a DataTask. Returning nil")
+            print("no need to create run a DataTask. Returning nil")
             return nil
         }
         
+        print("making request to download image at \(url)")
         let request = URLRequest(url: url)
         let dataTask = URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
             // check the error
@@ -75,6 +76,7 @@ final class ImageManager {
     }
     
     private func cacheImage(_ data: Data, for url: URL) {
+        print("caching Image...")
         let cachedImage = CachedImage(url: url, data: data)
         cache.append(cachedImage)
     }
