@@ -20,6 +20,9 @@
 		E12E06FF2A53D04900786F63 /* ObservableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12E06FE2A53D04900786F63 /* ObservableObject.swift */; };
 		E12E07012A53D8F800786F63 /* DessertsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12E07002A53D8F800786F63 /* DessertsViewModel.swift */; };
 		E12E07032A53E46200786F63 /* DessertDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12E07022A53E46200786F63 /* DessertDetailViewModel.swift */; };
+		E12E07072A53E75000786F63 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12E07062A53E75000786F63 /* ImageManager.swift */; };
+		E12E070A2A53EB2600786F63 /* DessertsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12E07092A53EB2600786F63 /* DessertsTableViewCell.swift */; };
+		E12E070C2A54492200786F63 /* DessertDetailImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12E070B2A54492200786F63 /* DessertDetailImageTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +41,9 @@
 		E12E06FE2A53D04900786F63 /* ObservableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableObject.swift; sourceTree = "<group>"; };
 		E12E07002A53D8F800786F63 /* DessertsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DessertsViewModel.swift; sourceTree = "<group>"; };
 		E12E07022A53E46200786F63 /* DessertDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DessertDetailViewModel.swift; sourceTree = "<group>"; };
+		E12E07062A53E75000786F63 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
+		E12E07092A53EB2600786F63 /* DessertsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DessertsTableViewCell.swift; sourceTree = "<group>"; };
+		E12E070B2A54492200786F63 /* DessertDetailImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DessertDetailImageTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +76,7 @@
 		4682ED4B2A533971003A0EA7 /* DessertApp */ = {
 			isa = PBXGroup;
 			children = (
+				E12E07082A53EB0600786F63 /* Views */,
 				E12E06FB2A53B9AA00786F63 /* Extensions */,
 				4682ED672A533D00003A0EA7 /* Utility */,
 				4682ED652A533CD6003A0EA7 /* Screens */,
@@ -94,8 +101,8 @@
 		4682ED652A533CD6003A0EA7 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				E12E07042A53E49000786F63 /* DessertsViewController */,
-				E12E07052A53E4A400786F63 /* DessertDetailViewController */,
+				E12E07042A53E49000786F63 /* Desserts */,
+				E12E07052A53E4A400786F63 /* DessertDetail */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -113,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				4682ED632A533CB7003A0EA7 /* NetworkManager.swift */,
+				E12E07062A53E75000786F63 /* ImageManager.swift */,
 				E12E06FE2A53D04900786F63 /* ObservableObject.swift */,
 			);
 			path = Utility;
@@ -126,22 +134,31 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		E12E07042A53E49000786F63 /* DessertsViewController */ = {
+		E12E07042A53E49000786F63 /* Desserts */ = {
 			isa = PBXGroup;
 			children = (
 				E12E07002A53D8F800786F63 /* DessertsViewModel.swift */,
 				4682ED612A5339D6003A0EA7 /* DessertsViewController.swift */,
 			);
-			path = DessertsViewController;
+			path = Desserts;
 			sourceTree = "<group>";
 		};
-		E12E07052A53E4A400786F63 /* DessertDetailViewController */ = {
+		E12E07052A53E4A400786F63 /* DessertDetail */ = {
 			isa = PBXGroup;
 			children = (
 				E12E07022A53E46200786F63 /* DessertDetailViewModel.swift */,
 				4682ED6A2A535560003A0EA7 /* DessertDetailViewController.swift */,
 			);
-			path = DessertDetailViewController;
+			path = DessertDetail;
+			sourceTree = "<group>";
+		};
+		E12E07082A53EB0600786F63 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E12E07092A53EB2600786F63 /* DessertsTableViewCell.swift */,
+				E12E070B2A54492200786F63 /* DessertDetailImageTableViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,14 +234,17 @@
 				E12E06FD2A53B9CB00786F63 /* UIViewController+Spinner.swift in Sources */,
 				E12E07032A53E46200786F63 /* DessertDetailViewModel.swift in Sources */,
 				4682ED642A533CB7003A0EA7 /* NetworkManager.swift in Sources */,
+				E12E07072A53E75000786F63 /* ImageManager.swift in Sources */,
 				4682ED622A5339D6003A0EA7 /* DessertsViewController.swift in Sources */,
 				4682ED6D2A537B56003A0EA7 /* Ingredient.swift in Sources */,
 				4682ED692A534075003A0EA7 /* Desserts.swift in Sources */,
+				E12E070C2A54492200786F63 /* DessertDetailImageTableViewCell.swift in Sources */,
 				4682ED4D2A533971003A0EA7 /* AppDelegate.swift in Sources */,
 				4682ED6B2A535560003A0EA7 /* DessertDetailViewController.swift in Sources */,
 				4682ED4F2A533971003A0EA7 /* SceneDelegate.swift in Sources */,
 				E12E06FF2A53D04900786F63 /* ObservableObject.swift in Sources */,
 				E12E07012A53D8F800786F63 /* DessertsViewModel.swift in Sources */,
+				E12E070A2A53EB2600786F63 /* DessertsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

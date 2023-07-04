@@ -37,6 +37,7 @@ class DessertDetailViewController: UIViewController {
         dessertDetailTableView.dataSource = self
         dessertDetailTableView.delegate = self
         dessertDetailTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        dessertDetailTableView.register(DessertDetailImageTableViewCell.self, forCellReuseIdentifier: "DessertDetailImageTableViewCell")
         dessertDetailTableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(dessertDetailTableView)
         NSLayoutConstraint.activate([
@@ -69,19 +70,12 @@ extension DessertDetailViewController: UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0: // thumbnail image
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-            // TODO: - This needs to be refactored to ge the image out of the cache instead of redownloading it
-            viewModel.networkManager.getDessertThumbnailImage(from: URL(string: viewModel.dessertDetailThumbnailURL)!, completion: { [weak self] image in
-                guard let self = self else { return }
-                var contentConfig = cell.defaultContentConfiguration()
-                contentConfig.image = image
-                contentConfig.imageProperties.maximumSize = CGSize(width: self.view.frame.width, height: self.view.frame.width)
-                contentConfig.imageProperties.cornerRadius = 3
-                cell.contentConfiguration = contentConfig
-            })
-            var contentConfig = cell.defaultContentConfiguration()
-            cell.contentConfiguration = contentConfig
-            cell.selectionStyle = .none
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "DessertDetailImageTableViewCell", for: indexPath) as? DessertDetailImageTableViewCell else {
+                print("Failed to dequeue DessertDetailImageTableViewCell")
+                let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
+                return cell
+            }
+            cell.configure(imageURL: URL(string: viewModel.dessertDetailThumbnailURLString)!, imageManager: viewModel.imageManager, size: view.frame.width)
             return cell
         case 1: // instructions
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)

@@ -8,12 +8,14 @@
 import Foundation
 
 class DessertDetailViewModel {
+    var imageManager: ImageManager
     var networkManager = NetworkManager()
     private var dessertDetail: DessertDetail
     var actualIngredients: [IngredientModel] = []
-    
-    init(dessertDetail: DessertDetail) {
+
+    init(dessertDetail: DessertDetail, imageManager: ImageManager) {
         self.dessertDetail = dessertDetail
+        self.imageManager = imageManager
         processNumberOfActualIngredients()
     }
     
@@ -25,7 +27,7 @@ class DessertDetailViewModel {
         return dessertDetail.instructions
     }
     
-    var dessertDetailThumbnailURL: String {
+    var dessertDetailThumbnailURLString: String {
         return dessertDetail.thumbnailURLString
     }
     

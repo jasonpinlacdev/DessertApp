@@ -9,6 +9,8 @@ import Foundation
 
 class DessertsViewModel {
     let networkManager = NetworkManager()
+    var imageManager = ImageManager()
+    
     var desserts: ObservableObject<Desserts?> = ObservableObject(value: nil)
     var dessertDetail: ObservableObject<DessertDetail?> = ObservableObject(value: nil)
     var dessertsViewTitle = "Desserts"

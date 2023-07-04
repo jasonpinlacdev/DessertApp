@@ -7,19 +7,15 @@
 
 import UIKit
 
-
 /* TODO: - Todo List
- create an image networking layer
- cache downloaded images
- create individual tableViewCells classes that encapsulate the image layer
- cancel the current datatask if scrolling the tableview
+ Done - refactor screens into mvvm using observableObject for binding listeniners
+ Done - create an image manager that downloads and caches downloaded images
+ Done - create custom tableViewCells classes that encapsulate the logic to download images using the image manager and set them
+ Done - cancel the current datatask if scrolling the tableview
  refactor network layer to use generics
  create splash page
+ unit tests
  */
-
-
-
-
 
 class DessertsViewController: UIViewController {
     
@@ -44,7 +40,8 @@ class DessertsViewController: UIViewController {
     func setupTableView() {
         dessertsTableView.dataSource = self
         dessertsTableView.delegate = self
-        dessertsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        dessertsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
+        dessertsTableView.register(DessertsTableViewCell.self, forCellReuseIdentifier: "DessertsTableViewCell")
         dessertsTableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(dessertsTableView)
         NSLayoutConstraint.activate([
@@ -54,20 +51,22 @@ class DessertsViewController: UIViewController {
             dessertsTableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1.0),
         ])
     }
-
+    
     func setupBindings() {
         viewModel.desserts.bind(skipInitialListenerCall: true) { [weak self] _ in
             self?.dessertsTableView.reloadData()
             self?.removeLoadingSpinner()
         }
         viewModel.dessertDetail.bind(skipInitialListenerCall: true) { [weak self] dessertDetail in
-            self?.removeLoadingSpinner()
+            guard let self = self else { return }
+            self.removeLoadingSpinner()
             guard let dessertDetail = dessertDetail else { return }
-            let dessertDetailViewModel = DessertDetailViewModel(dessertDetail: dessertDetail)
+            let dessertDetailViewModel = DessertDetailViewModel(dessertDetail: dessertDetail, imageManager: self.viewModel.imageManager)
             let dessertDetailViewController = DessertDetailViewController(with: dessertDetailViewModel)
-            self?.navigationController?.pushViewController(dessertDetailViewController, animated: true)
+            self.navigationController?.pushViewController(dessertDetailViewController, animated: true)
         }
     }
+
 }
 
 extension DessertsViewController: UITableViewDataSource, UITableViewDelegate {
@@ -78,26 +77,17 @@ extension DessertsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let desserts = viewModel.desserts.value else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
             return cell
         }
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        // TODO: refactor this into the viewmodel for the cell. Will probably have to make a custom cell
-        viewModel.networkManager.getDessertThumbnailImage(from: URL(string: desserts.list[indexPath.row].thumbnailURL)!, completion: { image in
-            var contentConfig = cell.defaultContentConfiguration()
-            contentConfig.text = desserts.list[indexPath.row].name
-            contentConfig.image = image
-            contentConfig.imageProperties.maximumSize = CGSize(width: 75, height: 75)
-            contentConfig.imageProperties.cornerRadius = 3
-            cell.contentConfiguration = contentConfig
-        })
-        var contentConfig = cell.defaultContentConfiguration()
-        contentConfig.text = desserts.list[indexPath.row].name
-        contentConfig.image = UIImage(systemName: "questionmark")
-        contentConfig.imageProperties.maximumSize = CGSize(width: 75, height: 75)
-        contentConfig.imageProperties.cornerRadius = 3
-        cell.accessoryType = .disclosureIndicator
-        cell.contentConfiguration = contentConfig
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "DessertsTableViewCell", for: indexPath) as? DessertsTableViewCell else {
+            print("Failed to dequeue DessertsTableViewCell")
+            let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
+            return cell
+        }
+        
+        cell.configure(dessertName: desserts.list[indexPath.row].name, imageURL: URL(string: desserts.list[indexPath.row].thumbnailURL)!, imageManager: viewModel.imageManager)
+        
         return cell
     }
     
@@ -106,5 +96,5 @@ extension DessertsViewController: UITableViewDataSource, UITableViewDelegate {
         showLoadingSpinner(on: view)
         viewModel.getDessertDetail(for: indexPath)
     }
-
+    
 }
