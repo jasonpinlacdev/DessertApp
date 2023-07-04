@@ -7,11 +7,20 @@
 
 import UIKit
 
+class DessertsViewModel {
+    let networkManager = NetworkManager()
+    var desserts: ObservableObject<Desserts?> = ObservableObject(value: nil)
+    
+    var dessertsViewTitle = "Desserts"
+}
+
 
 class DessertsViewController: UIViewController {
     
-    let networkManager = NetworkManager() // <--- this should go in a viewModel
-    var desserts: Desserts?
+//    let networkManager = NetworkManager() // <--- this should go in a viewModel
+//    var desserts: Desserts?
+    
+    let viewModel = DessertsViewModel()
     
     let dessertsTableView: UITableView = UITableView()
     
@@ -21,10 +30,11 @@ class DessertsViewController: UIViewController {
     }
     
     func setup() {
-        title = "Desserts"
+        title = viewModel.dessertsViewTitle
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = UIColor.systemBackground
         setupTableView()
+        setupBindings()
         getDesserts()
     }
     
@@ -45,9 +55,16 @@ class DessertsViewController: UIViewController {
     
     // this functionality should go in the viewModel
     func getDesserts() {
+        showLoadingSpinner(on: view)
         networkManager.getDesserts(from: URL(string: networkManager.dessertsURLString)!) { [weak self] desserts in
-            print(desserts)
+            self?.removeLoadingSpinner()
             self?.desserts = desserts
+            self?.dessertsTableView.reloadData()
+        }
+    }
+    
+    func setupBindings() {
+        viewModel.desserts.bind { [weak self] _ in
             self?.dessertsTableView.reloadData()
         }
     }
@@ -68,6 +85,7 @@ extension DessertsViewController: UITableViewDataSource, UITableViewDelegate {
       
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
        
+        // TODO: refactor this into the viewmodel
         networkManager.getDessertThumbnailImage(from: URL(string: desserts.list[indexPath.row].thumbnailURL)!, completion: { image in
             var contentConfig = cell.defaultContentConfiguration()
             contentConfig.text = desserts.list[indexPath.row].name
@@ -79,6 +97,9 @@ extension DessertsViewController: UITableViewDataSource, UITableViewDelegate {
 
         var contentConfig = cell.defaultContentConfiguration()
         contentConfig.text = desserts.list[indexPath.row].name
+        contentConfig.image = UIImage(systemName: "questionmark")
+        contentConfig.imageProperties.maximumSize = CGSize(width: 75, height: 75)
+        contentConfig.imageProperties.cornerRadius = 3
         cell.accessoryType = .disclosureIndicator
         cell.contentConfiguration = contentConfig
         
@@ -93,7 +114,13 @@ extension DessertsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let desserts = desserts else { return }
-        navigationController?.pushViewController(DessertDetailViewController(dessertDetailID: desserts.list[indexPath.row].id), animated: true)
+        
+        showLoadingSpinner(on: view)
+        networkManager.getDessertDetail(from: URL(string: networkManager.dessertDetailURLString + desserts.list[indexPath.row].id)!) { [weak self] dessertDetail in
+            self?.removeLoadingSpinner()
+            self?.navigationController?.pushViewController(DessertDetailViewController(dessertDetail: dessertDetail), animated: true)
+        }
+        
     }
 
 }

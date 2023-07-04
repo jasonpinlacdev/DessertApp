@@ -10,8 +10,11 @@ import UIKit
 class NetworkManager {
 
     let dessertsURLString = "https://themealdb.com/api/json/v1/1/filter.php?c=Dessert"
-//    "https://themealdb.com/api/json/v1/1/lookup.php?i=MEAL_ID"
     let dessertDetailURLString = "https://themealdb.com/api/json/v1/1/lookup.php?i="
+    
+    // TODO: - refactor network layer to use generics
+    // TODO: - let the thumbnailImage call go into an image manager class
+    
     
     // This is not the best solution. We want to use generics
     func getDesserts(from url: URL, completion: @escaping (Desserts) -> Void) {
