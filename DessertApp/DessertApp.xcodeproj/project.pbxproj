@@ -25,6 +25,7 @@
 		E12E070C2A54492200786F63 /* DessertDetailImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12E070B2A54492200786F63 /* DessertDetailImageTableViewCell.swift */; };
 		E12E07152A546E2F00786F63 /* DessertAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12E07142A546E2F00786F63 /* DessertAppTests.swift */; };
 		E12E071E2A546E7700786F63 /* DessertDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12E071D2A546E7700786F63 /* DessertDetailViewModelTests.swift */; };
+		E17B0A622A5492F20070C589 /* DessertDetailWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17B0A612A5492F20070C589 /* DessertDetailWrapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		E12E07122A546E2F00786F63 /* DessertAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DessertAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E12E07142A546E2F00786F63 /* DessertAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DessertAppTests.swift; sourceTree = "<group>"; };
 		E12E071D2A546E7700786F63 /* DessertDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DessertDetailViewModelTests.swift; sourceTree = "<group>"; };
+		E17B0A612A5492F20070C589 /* DessertDetailWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DessertDetailWrapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				4682ED682A534075003A0EA7 /* DessertsWrapper.swift */,
+				E17B0A612A5492F20070C589 /* DessertDetailWrapper.swift */,
 				4682ED6C2A537B56003A0EA7 /* Ingredient.swift */,
 			);
 			path = Models;
@@ -297,6 +300,7 @@
 				E12E06FD2A53B9CB00786F63 /* UIViewController+Spinner.swift in Sources */,
 				E12E07032A53E46200786F63 /* DessertDetailViewModel.swift in Sources */,
 				4682ED642A533CB7003A0EA7 /* NetworkManager.swift in Sources */,
+				E17B0A622A5492F20070C589 /* DessertDetailWrapper.swift in Sources */,
 				E12E07072A53E75000786F63 /* ImageManager.swift in Sources */,
 				4682ED622A5339D6003A0EA7 /* DessertsViewController.swift in Sources */,
 				4682ED6D2A537B56003A0EA7 /* Ingredient.swift in Sources */,

@@ -39,6 +39,7 @@ class DessertDetailImageTableViewCell: UITableViewCell {
         }
     }
     
+    // reset the cell and cancel current imageRequest in progress
     override func prepareForReuse() {
         super.prepareForReuse()
         imageRequest?.cancel()
@@ -54,16 +55,4 @@ class DessertDetailImageTableViewCell: UITableViewCell {
         contentConfig.imageProperties.cornerRadius = 3
         self.contentConfiguration = contentConfig
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
-    
 }

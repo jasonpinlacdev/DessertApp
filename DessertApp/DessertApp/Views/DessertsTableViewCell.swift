@@ -35,7 +35,7 @@ class DessertsTableViewCell: UITableViewCell {
         }
     }
     
-    // reset the cell
+    // reset the cell and cancel current image request in progress
     override func prepareForReuse() {
         super.prepareForReuse()
         print("Preparing cell for reuse. Canceling previous imageRequest dataTaks: \(String(describing: imageRequest))")

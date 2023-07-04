@@ -55,6 +55,4 @@ final class DessertDetailViewModelTests: XCTestCase {
         sut.processNumberOfActualIngredients()
         XCTAssert(sut.actualIngredients.count == 4, "The desertDetailViewModel.actualIngredients.count after processingActualIngredients did not return the correct value.")
     }
-    
-
 }
